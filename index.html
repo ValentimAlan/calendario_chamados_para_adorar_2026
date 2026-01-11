@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário Geral 2026 - Igreja Chamados para Adorar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa-magenta: #E13B7D;
+            --roxo-violeta: #8C52FF;
+            --azul-claro: #00AEEF;
+            --preto-suave: #2B2B2B;
+            --branco: #FFFFFF;
+            --cinza-claro: #F5F5F5;
+            --cinza-medio: #E0E0E0;
+            --verde-agua: #1DB954;
+            --laranja: #FF8C42;
+            --rosa-claro: #FF6B9D;
+            --roxo-escuro: #6B2C91;
+            --vermelho: #E63946;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--branco);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--rosa-magenta) 0%, var(--roxo-violeta) 50%, var(--azul-claro) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--branco);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .church-logo {
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Summary Cards */
+        .summary-section {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .summary-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--preto-suave);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--rosa-magenta), var(--roxo-violeta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .summary-card {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--rosa-magenta);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .summary-card h3 {
+            font-size: 1.3rem;
+            color: var(--preto-suave);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .summary-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .summary-card.missoes {
+            border-left-color: #E91E63;
+        }
+
+        .summary-card.santa-ceia {
+            border-left-color: #059669;
+        }
+
+        .summary-card.tnr {
+            border-left-color: #FF6F00;
+        }
+
+        .summary-card.eventos-especiais {
+            border-left-color: #00B4D8;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: transparent;
+            padding: 30px 20px;
+            border-bottom: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .month-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .month-btn {
+            padding: 12px 24px;
+            background: var(--branco);
+            border: 2px solid var(--cinza-medio);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--preto-suave);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+            position: relative;
+            z-index: 1;
+        }
+
+        .month-btn:hover,
+        .month-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .month-btn.active {
+            background: linear-gradient(135deg, var(--rosa-magenta), var(--roxo-violeta));
+            color: var(--branco);
+            border-color: var(--rosa-magenta);
+        }
+
+        /* Calendar */
+        .calendar-container {
+            padding: 40px 20px;
+        }
+
+        .calendar-month {
+            display: none;
+        }
+
+        .calendar-month.active {
+            display: block;
+        }
+
+        .month-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--preto-suave);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--rosa-magenta), var(--roxo-violeta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: 700;
+            padding: 15px 5px;
+            color: var(--roxo-violeta);
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--cinza-medio);
+        }
+
+        .day-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--cinza-claro);
+            color: var(--preto-suave);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .day-cell.empty {
+            background: transparent;
+        }
+
+        .day-cell.sunday {
+            color: var(--rosa-magenta);
+        }
+
+        .day-cell.missoes {
+            background: #E91E63;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .day-cell.congresso {
+            background: #00B4D8;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 180, 216, 0.4);
+            animation: glow 2s infinite;
+        }
+
+        .day-cell.santa-ceia {
+            background: #059669;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .day-cell.tnr {
+            background: #FF6F00;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+        }
+
+        .day-cell.vigilia {
+            background: #7B68B5;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(123, 104, 181, 0.3);
+        }
+
+        .day-cell.tematico {
+            background: #FFA000;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 160, 0, 0.3);
+        }
+
+        .day-cell.aniversario {
+            background: #C62828;
+            color: var(--branco);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+        }
+
+        .day-cell.missoes:hover,
+        .day-cell.congresso:hover,
+        .day-cell.santa-ceia:hover,
+        .day-cell.tnr:hover,
+        .day-cell.vigilia:hover,
+        .day-cell.tematico:hover,
+        .day-cell.aniversario:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 6px 16px rgba(0, 180, 216, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(0, 180, 216, 0.6);
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--preto-suave);
+            color: var(--branco);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            margin-bottom: 5px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--preto-suave);
+        }
+
+        .day-cell:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Month Details */
+        .month-details {
+            max-width: 800px;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .month-details h3 {
+            font-size: 1.5rem;
+            color: var(--preto-suave);
+            margin-bottom: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rosa-magenta), var(--roxo-violeta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .event-item {
+            background: var(--branco);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--rosa-magenta);
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-item.missoes {
+            border-left-color: #E91E63;
+        }
+
+        .event-item.congresso {
+            border-left-color: #00B4D8;
+        }
+
+        .event-item.santa-ceia {
+            border-left-color: #059669;
+        }
+
+        .event-item.tnr {
+            border-left-color: #FF6F00;
+        }
+
+        .event-item.vigilia {
+            border-left-color: #7B68B5;
+        }
+
+        .event-item.tematico {
+            border-left-color: #FFA000;
+        }
+
+        .event-item.aniversario {
+            border-left-color: #C62828;
+        }
+
+        .event-date {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--preto-suave);
+            margin-bottom: 5px;
+        }
+
+        .event-title {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Special Notice */
+        .special-notice {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 15px;
+            border-left: 5px solid #00B4D8;
+        }
+
+        .special-notice h3 {
+            font-size: 1.5rem;
+            color: var(--preto-suave);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .special-notice ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .special-notice li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .special-notice li:last-child {
+            border-bottom: none;
+        }
+
+        .special-notice li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #00B4D8;
+            border-radius: 50%;
+        }
+
+        /* Legend */
+        .legend {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--cinza-claro);
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .legend-color.missoes {
+            background: #E91E63;
+        }
+
+        .legend-color.congresso {
+            background: #00B4D8;
+        }
+
+        .legend-color.santa-ceia {
+            background: #059669;
+        }
+
+        .legend-color.tnr {
+            background: #FF6F00;
+        }
+
+        .legend-color.vigilia {
+            background: #7B68B5;
+        }
+
+        .legend-color.tematico {
+            background: #FFA000;
+        }
+
+        .legend-color.aniversario {
+            background: #C62828;
+        }
+
+        .legend-text {
+            font-size: 0.95rem;
+            color: var(--preto-suave);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #37474F 0%, #455A64 100%);
+            color: var(--branco);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer-info p {
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .footer-icon {
+            color: #00B4D8;
+            margin-right: 8px;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .church-logo {
+                max-width: 200px;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .month-title {
+                font-size: 1.5rem;
+            }
+
+            .calendar-grid {
+                gap: 5px;
+            }
+
+            .day-cell {
+                font-size: 0.9rem;
+            }
+
+            .day-header {
+                font-size: 0.75rem;
+                padding: 10px 2px;
+            }
+
+            .month-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tooltip {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            .calendar-container {
+                padding: 20px 10px;
+            }
+
+            .day-cell {
+                font-size: 0.85rem;
+            }
+
+            .special-notice,
+            .legend,
+            .month-details {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo Igreja Chamados para Adorar" class="church-logo">
+            </div>
+            <h1>Calendário Geral 2026</h1>
+            <p>Programação completa de eventos e cultos</p>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2 class="summary-title">Resumo dos Eventos</h2>
+            <div class="summary-grid">
+                <div class="summary-card santa-ceia">
+                    <h3>Santa Ceia</h3>
+                    <p>Todo 3º domingo do mês</p>
+                    <p>12 celebrações no ano</p>
+                </div>
+                <div class="summary-card missoes">
+                    <h3>Cultos de Missões</h3>
+                    <p>10 cultos mensais no 4º domingo</p>
+                    <p>Congresso de Missões em Abril</p>
+                </div>
+                <div class="summary-card tnr">
+                    <h3>TNR - Cultos dos Jovens</h3>
+                    <p>9 cultos no primeiro sábado</p>
+                    <p>Aniversário TNR e Conferência</p>
+                </div>
+                <div class="summary-card eventos-especiais">
+                    <h3>Eventos Especiais</h3>
+                    <p>4 Vigílias no ano</p>
+                    <p>16 cultos temáticos</p>
+                    <p>Aniversário da Igreja em Novembro</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <div class="month-selector">
+                <button class="month-btn active" data-month="0" onclick="changeMonth(0)">Janeiro</button>
+                <button class="month-btn" data-month="1" onclick="changeMonth(1)">Fevereiro</button>
+                <button class="month-btn" data-month="2" onclick="changeMonth(2)">Março</button>
+                <button class="month-btn" data-month="3" onclick="changeMonth(3)">Abril</button>
+                <button class="month-btn" data-month="4" onclick="changeMonth(4)">Maio</button>
+                <button class="month-btn" data-month="5" onclick="changeMonth(5)">Junho</button>
+                <button class="month-btn" data-month="6" onclick="changeMonth(6)">Julho</button>
+                <button class="month-btn" data-month="7" onclick="changeMonth(7)">Agosto</button>
+                <button class="month-btn" data-month="8" onclick="changeMonth(8)">Setembro</button>
+                <button class="month-btn" data-month="9" onclick="changeMonth(9)">Outubro</button>
+                <button class="month-btn" data-month="10" onclick="changeMonth(10)">Novembro</button>
+                <button class="month-btn" data-month="11" onclick="changeMonth(11)">Dezembro</button>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <div id="calendars"></div>
+            <div id="monthDetails"></div>
+        </div>
+
+        <!-- Special Notice -->
+        <div class="special-notice">
+            <h3>Informações Importantes</h3>
+            <ul>
+                <li>Santa Ceia: 3º domingo de cada mês</li>
+                <li>Cultos de Missões: 4º domingo de cada mês</li>
+                <li>TNR: Primeiro sábado de cada mês</li>
+                <li>2º Congresso de Missões: 25 e 26 de Abril</li>
+                <li>Aniversário da Igreja: 21 e 22 de Novembro</li>
+                <li>Aniversário TNR: 7 e 8 de Fevereiro</li>
+                <li>Conferência TNR: 1 e 2 de Agosto</li>
+                <li>4 Vigílias ao longo do ano</li>
+            </ul>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color santa-ceia"></div>
+                <span class="legend-text">Santa Ceia</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color missoes"></div>
+                <span class="legend-text">Culto de Missões</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color tnr"></div>
+                <span class="legend-text">TNR - Cultos dos Jovens</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color congresso"></div>
+                <span class="legend-text">Congressos e Conferências</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color vigilia"></div>
+                <span class="legend-text">Vigílias</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color tematico"></div>
+                <span class="legend-text">Cultos Temáticos</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color aniversario"></div>
+                <span class="legend-text">Aniversários</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Igreja Chamados para Adorar</h3>
+            <div class="footer-info">
+                <p>
+                    <span class="footer-icon">▪</span>
+                    R. Egas dos Santos, nº 2 - Jardim São Paulo<br>
+                    Embu-Guaçu - SP, 06900-000
+                </p>
+                <p>
+                    <span class="footer-icon">▪</span>
+                    (11) 97315-1816
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos eventos
+        var events = {
+            0: [
+                { day: 18, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 25, type: 'missoes', title: 'Culto de Missoes' }
+            ],
+            1: [
+                { day: 7, type: 'aniversario', title: 'Aniversário TNR - Dia 1' },
+                { day: 8, type: 'aniversario', title: 'Aniversário TNR - Dia 2' },
+                { day: 14, type: 'vigilia', title: 'Vigília' },
+                { day: 15, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 22, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            2: [
+                { day: 14, type: 'tematico', title: 'Culto com as Mulheres' },
+                { day: 15, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 22, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            3: [
+                { day: 4, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 5, type: 'tematico', title: 'Culto de Páscoa' },
+                { day: 19, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 25, type: 'congresso', title: '2º Congresso de Missões - Dia 1' },
+                { day: 26, type: 'congresso', title: '2º Congresso de Missões - Dia 2' }
+            ],
+            4: [
+                { day: 2, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 10, type: 'tematico', title: 'Culto das Mães' },
+                { day: 17, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 24, type: 'missoes', title: 'Culto de Missões' },
+                { day: 30, type: 'vigilia', title: 'Vigília' }
+            ],
+            5: [
+                { day: 6, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 7, type: 'tematico', title: 'Culto de Aniversário do Pastor' },
+                { day: 13, type: 'tematico', title: 'Encontro de Casais' },
+                { day: 14, type: 'tematico', title: 'Dia do Pastor' },
+                { day: 21, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 28, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            6: [
+                { day: 4, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 11, type: 'tematico', title: 'Louvorzão' },
+                { day: 19, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 26, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            7: [
+                { day: 1, type: 'congresso', title: 'Conferência TNR - Dia 1' },
+                { day: 2, type: 'congresso', title: 'Conferência TNR - Dia 2' },
+                { day: 9, type: 'tematico', title: 'Culto de Dia dos Pais' },
+                { day: 16, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 23, type: 'missoes', title: 'Culto de Missões' },
+                { day: 29, type: 'vigilia', title: 'Vigília' }
+            ],
+            8: [
+                { day: 5, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 6, type: 'tematico', title: 'Aniversário da Pastora' },
+                { day: 13, type: 'tematico', title: 'Culto Setembro Amarelo' },
+                { day: 20, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 27, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            9: [
+                { day: 3, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 10, type: 'vigilia', title: 'Vigília' },
+                { day: 12, type: 'tematico', title: 'Festa das Crianças' },
+                { day: 18, type: 'santa-ceia', title: 'Santa Ceia' },
+                { day: 24, type: 'tematico', title: 'Culto Outubro Rosa' },
+                { day: 25, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            10: [
+                { day: 7, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 21, type: 'aniversario', title: 'Aniversário da Igreja - Dia 1' },
+                { day: 22, type: 'aniversario', title: 'Aniversário da Igreja - Dia 2' },
+                { day: 29, type: 'missoes', title: 'Culto de Missões' }
+            ],
+            11: [
+                { day: 5, type: 'tnr', title: 'TNR - Culto dos Jovens' },
+                { day: 12, type: 'tematico', title: 'Confraternização da Igreja' },
+                { day: 13, type: 'tematico', title: 'Dia da Bíblia' },
+                { day: 20, type: 'tematico', title: 'Culto de Natal e Santa Ceia' }
+            ]
+        };
+
+        var monthNames = [
+            'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+        ];
+
+        var dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+
+        function getDaysInMonth(month, year) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function getFirstDayOfMonth(month, year) {
+            return new Date(year, month, 1).getDay();
+        }
+
+        function isEventDay(month, day) {
+            if (!events[month]) return null;
+            for (var i = 0; i < events[month].length; i++) {
+                if (events[month][i].day === day) {
+                    return events[month][i];
+                }
+            }
+            return null;
+        }
+
+        function createCalendar(month) {
+            var year = 2026;
+            var daysInMonth = getDaysInMonth(month, year);
+            var firstDay = getFirstDayOfMonth(month, year);
+
+            var html = '<div class="calendar-month' + (month === 0 ? ' active' : '') + '" data-month="' + month + '">';
+            html += '<h2 class="month-title">' + monthNames[month] + ' 2026</h2>';
+            html += '<div class="calendar-grid">';
+
+            // Cabeçalhos dos dias
+            for (var i = 0; i < dayNames.length; i++) {
+                html += '<div class="day-header">' + dayNames[i] + '</div>';
+            }
+
+            // Células vazias antes do primeiro dia
+            for (var i = 0; i < firstDay; i++) {
+                html += '<div class="day-cell empty"></div>';
+            }
+
+            // Dias do mês
+            for (var day = 1; day <= daysInMonth; day++) {
+                var date = new Date(year, month, day);
+                var isSunday = date.getDay() === 0;
+                var event = isEventDay(month, day);
+
+                var classes = 'day-cell';
+                if (isSunday) classes += ' sunday';
+                if (event) {
+                    classes += ' ' + event.type;
+                }
+
+                html += '<div class="' + classes + '">';
+                html += day;
+                
+                if (event) {
+                    html += '<div class="tooltip">' + event.title + '</div>';
+                }
+                
+                html += '</div>';
+            }
+
+            html += '</div></div>';
+            return html;
+        }
+
+        function createMonthDetails(month) {
+            if (!events[month] || events[month].length === 0) {
+                return '<div class="month-details"><h3>Eventos de ' + monthNames[month] + '</h3><p style="text-align: center; color: #666;">Nenhum evento específico para este mês.</p></div>';
+            }
+
+            var html = '<div class="month-details">';
+            html += '<h3>Eventos de ' + monthNames[month] + '</h3>';
+            html += '<div class="event-list">';
+
+            var sortedEvents = events[month].slice().sort(function(a, b) {
+                return a.day - b.day;
+            });
+
+            for (var i = 0; i < sortedEvents.length; i++) {
+                var event = sortedEvents[i];
+                html += '<div class="event-item ' + event.type + '">';
+                html += '<div class="event-date">' + event.day + ' de ' + monthNames[month] + '</div>';
+                html += '<div class="event-title">' + event.title + '</div>';
+                html += '</div>';
+            }
+
+            html += '</div></div>';
+            return html;
+        }
+
+        // Gerar todos os calendários
+        function generateAllCalendars() {
+            var calendarsContainer = document.getElementById('calendars');
+            var allCalendars = '';
+            
+            for (var month = 0; month < 12; month++) {
+                allCalendars += createCalendar(month);
+            }
+            
+            calendarsContainer.innerHTML = allCalendars;
+        }
+
+        // Atualizar detalhes do mês
+        function updateMonthDetails(monthIndex) {
+            var detailsContainer = document.getElementById('monthDetails');
+            detailsContainer.innerHTML = createMonthDetails(monthIndex);
+        }
+
+        // Função global para trocar de mês (chamada pelo onclick)
+        function changeMonth(monthIndex) {
+            console.log('Mudando para mês:', monthIndex);
+            
+            // Remove active de todos os botoes
+            var buttons = document.getElementsByClassName('month-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].className = buttons[i].className.replace(' active', '');
+            }
+            
+            // Remove active de todos os calendarios
+            var calendars = document.getElementsByClassName('calendar-month');
+            for (var i = 0; i < calendars.length; i++) {
+                calendars[i].className = calendars[i].className.replace(' active', '');
+            }
+            
+            // Adiciona active no botao clicado
+            var clickedButton = document.querySelector('.month-btn[data-month="' + monthIndex + '"]');
+            if (clickedButton) {
+                clickedButton.className += ' active';
+            }
+            
+            // Adiciona active no calendario correspondente
+            var targetCalendar = document.querySelector('.calendar-month[data-month="' + monthIndex + '"]');
+            if (targetCalendar) {
+                targetCalendar.className += ' active';
+            }
+
+            // Atualiza os detalhes do mes
+            updateMonthDetails(monthIndex);
+            
+            console.log('Mês trocado com sucesso!');
+        }
+
+        // Funcionalidade do seletor de mês
+        function setupMonthSelector() {
+            console.log('Setup concluido - usando onclick inline');
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Iniciando calendário...');
+            generateAllCalendars();
+            updateMonthDetails(0); // Mostra detalhes de janeiro inicialmente
+            setupMonthSelector();
+            console.log('Calendário inicializado com sucesso!');
+            
+            // Teste adicional para iOS
+            var buttons = document.querySelectorAll('.month-btn');
+            console.log('Botões encontrados:', buttons.length);
+        });
+    </script>
+</body>
+</html>
